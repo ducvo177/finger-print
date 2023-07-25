@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FingerPrint extends Model
 {
     use HasFactory;
-
+    protected $table = 'fingerprints';
     protected $fillable = [
         'name',
         'date',

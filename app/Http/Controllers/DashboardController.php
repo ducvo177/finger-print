@@ -16,7 +16,12 @@ class DashboardController extends Controller
 
     public function index($email)
     {
-        
-        return view('dashboard');
+        $user = $this->userRepository->findByEmail($email);
+        if($user->is_admin == 0 ){
+            return view('dashboard');
+        }else{
+            return view('admin');
+        }
+
     }
 }
