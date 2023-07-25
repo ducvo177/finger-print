@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://wallpapers.com/images/hd/fingerprint-cyber-security-23mq2ko8y5z321vl.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Thêm class "login-box" để tạo khung hình chữ nhật chứa form đăng nhập */
+.login-box {
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Định dạng các thành phần bên trong form */
+.login-box h2 {
+    margin: 30px 0;
+    font-size: 30px;
+    color: #333;
+}
+
+.login-box label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    text-align: left;
+    margin:10px 30px;
+}
+body{
+    margin:0;
+    font-family: 'Roboto', sans-serif;
+}
+.login-box input[type="email"],
+.login-box input[type="password"],
+.login-box input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top:20px;
+}
+
+.login-box button:hover {
+    background-color: #0056b3;
+}
+
+.login-box p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+.login-box a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
