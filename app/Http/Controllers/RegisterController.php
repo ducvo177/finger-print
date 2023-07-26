@@ -19,7 +19,7 @@ class RegisterController extends Controller
         'email' => $input['email'],
         'password' => Hash::make($input['password'])
        ]);
-
+       return redirect()->route('login')->with('success', 'Login with your new account');
         
     }
     public function index()

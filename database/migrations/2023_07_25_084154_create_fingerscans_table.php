@@ -13,11 +13,11 @@ class CreateFingerScansTable extends Migration
             $table->boolean('isCorrect');
             $table->date('date');
             $table->text('tmpContent');
-            $table->unsignedBigInteger('fingerprint_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('scanmachine_id');
             $table->timestamps();
 
-            $table->foreign('fingerprint_id')->references('id')->on('fingerprints')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // Add foreign key for scanmachine_id if it's related to another table
         });
     }

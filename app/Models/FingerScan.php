@@ -13,7 +13,7 @@ class FingerScan extends Model
         'isCorrect',
         'date',
         'tmpContent',
-        'fingerprint_id',
+        'user_id',
         'scanmachine_id',
     ];
 

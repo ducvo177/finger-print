@@ -1,9 +1,9 @@
-.container {
+.container-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://wallpapers.com/images/hd/fingerprint-cyber-security-23mq2ko8y5z321vl.jpg');
+    background-image: url('/image/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
