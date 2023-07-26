@@ -23,3 +23,4 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/login/check', [LoginController::class, 'check'])->name('login-check');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/dashboard/{email}',[DashboardController::class,'index'])->name('dashboard');
+Route::get('/scan',[DashboardController::class,'scan'])->name('scan');

@@ -28,4 +28,9 @@ class DashboardController extends Controller
         }
 
     }
+    
+    public function scan()
+    {
+        return view('scan');
+    }
 }
