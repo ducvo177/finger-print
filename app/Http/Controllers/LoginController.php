@@ -19,7 +19,7 @@ class LoginController extends Controller
         ]);
         
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard', ['email' => $request->email])->with('success', 'Login successful! Welcome back!');
+            return redirect()->route('dashboard')->with('success', 'Login successful! Welcome back!');
         }
         
         return redirect()->route('login')->with('error', 'Wrong info, try again');

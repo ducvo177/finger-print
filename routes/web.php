@@ -18,9 +18,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::post('/register/store', [RegisterController::class, 'store'])->name('register-store');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/scan', [DashboardController::class, 'scan'])->name('scan')->middleware('auth');
+Route::post('/scan/check', [DashboardController::class, 'check'])->name('scan-check')->middleware('auth');
+Route::get('/admin', [DashboardController::class, 'admin'])->name('admin')->middleware('auth');
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/login/check', [LoginController::class, 'check'])->name('login-check');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/dashboard/{email}',[DashboardController::class,'index'])->name('dashboard');
-Route::get('/scan',[DashboardController::class,'scan'])->name('scan');
+Route::post('/register/store', [RegisterController::class, 'store'])->name('register-store');

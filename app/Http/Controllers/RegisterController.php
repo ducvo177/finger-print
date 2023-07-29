@@ -17,11 +17,13 @@ class RegisterController extends Controller
        User::create([
         'name' => $input['name'],
         'email' => $input['email'],
-        'password' => Hash::make($input['password'])
+        'password' => Hash::make($input['password']),
+
        ]);
        return redirect()->route('login')->with('success', 'Login with your new account');
         
     }
+
     public function index()
     {
         return view('register');

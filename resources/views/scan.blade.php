@@ -8,63 +8,72 @@
 
 <div class="container-com">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12" style="text-align: center;">
             <h2 class='scan-title'>Đặt tay vào thiết bị quét vân tay</h2>
-            <!-- Left side with fingerprint image and scan button -->
-            <div class="fingerprint-container" style="display: flex;">
-                <img src="/image/image.jpg" alt="Fingerprint" class="fingerprint-img">
-                <button class="btn btn-success scan-button-2">Quét</button>
-                
+
+            <div class="fingerprint-container" style="display: flex; margin:auto">
+                <form action="/scan/check" enctype="multipart/form-data" method='post'>
+                    @csrf
+                    <!-- Thẻ img để hiển thị ảnh đã tải lên -->
+                    <img id="preview-image" src="/image/image.jpg" alt="Fingerprint" class="fingerprint-img">
+                    <br>
+                    <!-- Thẻ input tải ảnh lên -->
+                    <input type="file" accept="image/*" placeholder="quét vân tay" name='url' id='url' style="margin:auto; margin-top:30px; align-items:center; color:#fff;">
+                    <br>
+
+                    <!-- Nút Quét để hiển thị ảnh đã tải lên -->
+                    <br>
+                    <button class="btn btn-success scan-button-2" type="submit" style="margin-top:30px;">Quét</button>
+                </form>
             </div>
         </div>
-        <div class="col-md-6">
-        <h2 class='scan-title'>Vân tay sau xử lý</h2>
-        <canvas id="skeletonCanvas" class="fingerprint-img" style="margin:90px 0;"></canvas>
-        </div>
+
+        <button class="btn btn-outline-light scan-button-2 mt-2" onclick="backToHome()">Trở về</button>
     </div>
 
     <script>
-        // Tạo hàm để vẽ ảnh skeleton
-        function drawSkeletonImage() {
-            // Đường dẫn đến ảnh vân tay gốc
-            const imageSrc = "/image/image.jpg";
-            const img = new Image();
-            img.src = imageSrc;
+        var imageSrc = null;
 
-            // Đợi cho ảnh tải hoàn thành
-            img.onload = function() {
-                const canvas = document.getElementById("skeletonCanvas");
-                const ctx = canvas.getContext("2d");
-
-                // Đặt kích thước canvas bằng kích thước ảnh
-                canvas.width = img.width;
-                canvas.height = img.height;
-
-                // Vẽ ảnh gốc lên canvas
-                ctx.drawImage(img, 0, 0);
-
-                // Lấy dữ liệu pixel từ ảnh
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const data = imageData.data;
-
-                // Xử lý dữ liệu pixel để biến ảnh thành dạng skeleton
-                for (let i = 0; i < data.length; i += 4) {
-                    // Lấy giá trị mức xám trung bình của pixel (R + G + B) / 3
-                    const gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
-
-                    // Thiết lập các kênh màu R, G, B của pixel thành mức xám
-                    data[i] = gray; // R
-                    data[i + 1] = gray; // G
-                    data[i + 2] = gray; // B
-                }
-
-                // Đặt lại dữ liệu pixel đã xử lý vào canvas
-                ctx.putImageData(imageData, 0, 0);
-            };
+        function backToHome() {
+            window.history.back();
         }
 
-        // Gọi hàm để vẽ ảnh skeleton khi tải trang xong
-        window.onload = drawSkeletonImage;
+        function uploadImage() {
+            const fileInput = document.getElementById('url');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+            // Url của phía server
+            // fetch('/upload', {
+            //         method: 'POST',
+            //         body: formData
+            //     })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         console.log('Server response:', data);
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error);
+            //     });
+        }
+        document.getElementById('url').addEventListener('change', function(event) {
+            // Kiểm tra xem đã chọn ảnh hay chưa
+            if (event.target.files && event.target.files[0]) {
+                const file = event.target.files[0];
+
+                // Tạo một URL tạm thời để hiển thị ảnh trước khi tải lên
+                const tempUrl = URL.createObjectURL(file);
+
+                // Cập nhật thuộc tính src của thẻ <img> để hiển thị ảnh đã chọn
+                document.getElementById('preview-image').src = tempUrl;
+            }
+        });
     </script>
 
 </div>
