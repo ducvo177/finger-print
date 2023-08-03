@@ -67,7 +67,7 @@
 
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td> <a href="/user/{{ $user->id }}">{{ $user->maNV }} </a></td>
+                            <td> <a href="/user?user_id={{ $user->id }}">{{ $user->maNV }} </a></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ date('d/m/Y', strtotime($user->created_at)) }}</td>

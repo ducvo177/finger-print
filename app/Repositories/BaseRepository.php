@@ -25,7 +25,6 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->where(function($query) {
             $tableName = $this->model->getTable();
-            $query->whereNull("{$tableName}.delete_key")->orWhere("{$tableName}.delete_key", 0);
         })->get();
     }
 
@@ -36,7 +35,6 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->where(function($query) {
             $tableName = $this->model->getTable();
-            $query->whereNull("{$tableName}.delete_key")->orWhere("{$tableName}.delete_key", 0);
         })->find($id);
     }
 
@@ -47,7 +45,6 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->where(function($query) {
             $tableName = $this->model->getTable();
-            $query->whereNull("{$tableName}.delete_key")->orWhere("{$tableName}.delete_key", 0);
         })->with($withRelation)->find($id);
     }
 

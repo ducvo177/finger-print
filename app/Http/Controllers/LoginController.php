@@ -19,10 +19,10 @@ class LoginController extends Controller
         ]);
         
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard')->with('success', 'Login successful! Welcome back!');
+            return redirect()->route('dashboard')->with('success', 'Dăng nhập thành công, chào mừng trở lại');
         }
         
-        return redirect()->route('login')->with('error', 'Wrong info, try again');
+        return redirect()->route('login')->with('error', 'Thông tin nhân viên không chính xác');
     }
 
     public function index()

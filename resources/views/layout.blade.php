@@ -39,29 +39,28 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <script>
-        // Lấy thông báo từ session
-        @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: '{{ session('
-            success ') }}',
-            showConfirmButton: false,
-            timer: 2000 // Hiển thị trong 2 giây
-        });
-        @endif
+        var successMessage = '<?php echo addslashes(session('success')); ?>';
+    if (successMessage) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Thành công',
+        text: successMessage,
+        showConfirmButton: false,
+        timer: 2000 // Display for 2 seconds
+      });
+    }
 
-        @if(session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: '{{ session('
-            error ') }}',
-            showConfirmButton: false,
-            timer: 2000 // Hiển thị trong 2 giây
-        });
-
-        @endif
+    // Check for error message in the session
+    var errorMessage = '<?php echo addslashes(session('error')); ?>';
+    if (errorMessage) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Lỗi',
+        text: errorMessage,
+        showConfirmButton: false,
+        timer: 2000 // Display for 2 seconds
+      });
+    }
     </script>
 </body>
 

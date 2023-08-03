@@ -8,21 +8,40 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-
+.avatar-img{
+    width: 250px;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+.update-text{
+    width: 130px;
+}
+.update-input{
+    width: 400px;
+    border-radius: 10px;
+    padding: 5px ;
+    margin-bottom: 10px;
+}
 /* Thêm class "login-box" để tạo khung hình chữ nhật chứa form đăng nhập */
 .login-box {
-    width: 400px;
+    width: 500px;
     height: 500px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
+.register-box{
+ 
+    height: 700px !important;
+}
 .container-com {
+    height: 85vh;
     background-color: rgba(0, 0, 0, 0.80); /* White background for the container */
     padding: 20px; /* Add padding to the container if desired */
-    width:80%;
-    height: 70%;
+    width:90%;
     border-radius: 10px;
 }
 
@@ -55,14 +74,14 @@ border-radius: 5px;
 
 /* Style for the scan button */
 .scan-button {
-margin-top: 20px;
-width: 60%;
+margin-top:50px;
+width: 300px;
 height: 50px;
 margin: auto;
 }
 .scan-button-2{
     margin-top: 20px;
-    width: 30%;
+    width: 300px;
     height: 50px;
     margin: auto;
 }

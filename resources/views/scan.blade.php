@@ -9,7 +9,7 @@
 <div class="container-com">
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
-            <h2 class='scan-title'>Đặt tay vào thiết bị quét vân tay</h2>
+            <h2 class='scan-title' style="margin:50px 0; font-size: 30px;">Đặt tay vào thiết bị quét vân tay</h2>
 
             <div class="fingerprint-container" style="display: flex; margin:auto">
                 <form action="/scan/check" enctype="multipart/form-data" method='post'>
@@ -18,7 +18,7 @@
                     <img id="preview-image" src="/image/image.jpg" alt="Fingerprint" class="fingerprint-img">
                     <br>
                     <!-- Thẻ input tải ảnh lên -->
-                    <input type="file" accept="image/*" placeholder="quét vân tay" name='url' id='url' style="margin:auto; margin-top:30px; align-items:center; color:#fff;">
+                    <input type="file" accept="image/*" placeholder="quét vân tay" name='url' id='url' style="margin:auto; margin-top:30px; align-items:center; color:#fff; opacity:0;">
                     <br>
 
                     <!-- Nút Quét để hiển thị ảnh đã tải lên -->
