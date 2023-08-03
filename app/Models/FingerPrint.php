@@ -20,6 +20,4 @@ class FingerPrint extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    // Add any additional relationships or methods you need for FingerPrint model
 }

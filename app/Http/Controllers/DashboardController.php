@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\FingerPrintRepository;
 use App\Repositories\FingerScanRepository;
 use App\Repositories\UserRepository;
 use Carbon\Carbon;
@@ -12,11 +13,13 @@ class DashboardController extends Controller
 {
     protected $userRepository;
     protected $fingerScanRepository;
+    protected $fingerPrintRepository;
 
-    public function __construct(UserRepository $userRepository, FingerScanRepository $fingerScanRepository)
+    public function __construct(UserRepository $userRepository, FingerScanRepository $fingerScanRepository, FingerPrintRepository $fingerPrintRepository)
     {
         $this->userRepository = $userRepository;
         $this->fingerScanRepository = $fingerScanRepository;
+        $this->fingerPrintRepository = $fingerPrintRepository;
     }
 
     public function index()
@@ -78,14 +81,40 @@ class DashboardController extends Controller
             $filePath = $file->storeAs('image', $fileName, 'public');
             $imageUrl = Storage::url($filePath);
             $inputs['avatar'] = $imageUrl;
-        } 
-        
+        }
+
         $this->userRepository->save($inputs, ['id' => $id]);
-        if($route == 'admin'){
+        if ($route == 'admin') {
             return redirect()->route('user', ['user_id' => $id])->with('success', 'Update user thành công');
-        }else{
+        } else {
             return redirect()->route('dashboard')->with('success', 'Update user thành công');
         }
-        
+    }
+
+    public function userScan(Request $request)
+    {
+        $input = $request->all();
+        $fingerPrint = $this->fingerPrintRepository->findByUserId($input['user_id']);
+        if ($fingerPrint->count() === 0) {
+            $user =  $this->userRepository->findById($input['user_id']);
+            return view('userscan', compact('user', 'user'));
+        } else {
+            return redirect()->route('user', ['user_id' => $input['user_id']])->with('error', 'Người dùng đã có dấu vân tay');
+        }
+    }
+
+    public function userScanSave(Request $request)
+    {
+        $user = $this->userRepository->findById($request->id);
+        $file = $request->file('url');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('image', $fileName, 'public');
+        $imageUrl = Storage::url($filePath);
+        $inputs['name'] = 'finger-print-' . $user->maNV;
+        $inputs['user_id'] = $request->id;
+        $inputs['content'] = $imageUrl;
+        $inputs['date'] = Carbon::now();
+        $this->fingerPrintRepository->save($inputs);
+        return redirect()->route('admin')->with('success', 'Đã thêm dấu vân tay thành công');
     }
 }

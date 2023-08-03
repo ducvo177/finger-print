@@ -9,22 +9,19 @@
 <div class="container-com">
     <div class="row">
         <div class="col-md-4">
-            <!-- Left side with fingerprint image and scan button -->
             <div class="fingerprint-container">
                 <img src="/image/159470802-jurist-avatar-icon-flat-style.webp" alt="Fingerprint" class="fingerprint-img">
                 <span style="color: #fff; font-size:30px; margin:25px 0;">Bạn đang truy cập dưới quyền Admin</span>
-                <!-- <button class="btn btn-success scan-button" onclick="routeToScan()">Quét</button> -->
             </div>
         </div>
         <div class="col-md-8">
-            <!-- Right side with the table -->
             <div style="display: flex;">
                 <h1 class="mt-5 table-title">Danh sách nhân viên</h1>
                 <div class="input-group" style="display: flex; height:fit-content; width:300px; margin-top:60px; margin-left:200px">
                     <input type="text" class="form-control" placeholder="Nhập từ khóa..." id="searchInput">
                     <div class="input-group-append">
                         <button class="btn btn-primary" id="searchButton">
-                            <i class="fa fa-search"></i> <!-- Sử dụng icon search của Bootstrap -->
+                            <i class="fa fa-search"></i> 
                         </button>
                     </div>
                 </div>
@@ -58,8 +55,8 @@
                                 </div>
                             </th>
                             <th>Email</th>
-                            <th>Ngày tạo tài khoản</th>
-                            <!-- Add more table headers for other attributes as needed -->
+                            <th>Địa chỉ</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -70,8 +67,8 @@
                             <td> <a href="/user?user_id={{ $user->id }}">{{ $user->maNV }} </a></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ date('d/m/Y', strtotime($user->created_at)) }}</td>
-                            <!-- Add more table cells for other attributes as needed -->
+                            <td>{{ $user->address }}</td>
+                           
                         </tr>
 
                         @endforeach

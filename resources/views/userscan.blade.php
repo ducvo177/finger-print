@@ -8,11 +8,11 @@
 
 <div class="container-com">
     <div class="row">
-        <div class="col-md-12" style="text-align: center;">
-            <h2 class='scan-title' style="margin:50px 0; font-size: 30px;">Đặt tay vào thiết bị quét vân tay</h2>
+        <div class="col-md-12" style="text-align: left; ">
+            <h2 class='scan-title' style="margin:50px 0; margin-left:500px; font-size: 30px;">Thiết lập vân tay cho nhân viên: {{ $user->name }} <br/> Mã nhân viên: {{$user->maNV}}</h2>
 
             <div class="fingerprint-container" style="display: flex; margin:auto">
-                <form action="/scan/check" enctype="multipart/form-data" method='post'>
+                <form action="/user/scan/save" enctype="multipart/form-data" method='post'>
                     @csrf
                     <!-- Thẻ img để hiển thị ảnh đã tải lên -->
                     <img id="preview-image" src="/image/image.jpg" alt="Fingerprint" class="fingerprint-img">
@@ -22,6 +22,7 @@
                     <br>
 
                     <!-- Nút Quét để hiển thị ảnh đã tải lên -->
+                    <input type="hidden" name='id' value="{{ $user->id }}"/>
                     <br>
                     <button class="btn btn-success scan-button-2" type="submit" style="margin-top:30px;">Quét</button>
                 </form>
@@ -49,18 +50,7 @@
 
             const formData = new FormData();
             formData.append('image', file);
-            // Url của phía server
-            // fetch('/upload', {
-            //         method: 'POST',
-            //         body: formData
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log('Server response:', data);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error:', error);
-            //     });
+    
         }
         document.getElementById('url').addEventListener('change', function(event) {
             if (event.target.files && event.target.files[0]) {

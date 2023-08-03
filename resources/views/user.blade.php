@@ -42,7 +42,11 @@
             <div>
                 <h1 class=" table-title" style="font-size:24px;">Dữ liệu chấm công của nhân viên</h1>
                 <div id="calendar" style="width:700px; background-color: #fff; border-radius: 10px;"></div>
-                <button class="btn btn-light" style="margin-top:30px; width:200px; margin-left:250px" onclick="routeToScan()">Back</button>
+                <diV style="display: flex;">
+                    <button class="btn btn-light" style="margin-top:30px; width:200px; margin-left:150px" onclick="routeBack()">Back</button>
+                    <button class="btn btn-danger" style="margin-top:30px; width:200px; margin-left:20px" onclick="routeToScan()">Thêm dấu vân tay cho nhân viên</button>
+                </diV>
+
             </div>
 
         </div>
@@ -51,8 +55,13 @@
 </div>
 
 <script>
-    function routeToScan() {
+    function routeBack() {
         window.location.href = '/admin';
+    }
+
+    function routeToScan() {
+        var user_id = <?php echo $user->id; ?>;
+        window.location.href = '/user/scan?user_id=' + user_id;
     }
 
     function previewAvatar() {
