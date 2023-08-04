@@ -41,14 +41,21 @@ class DashboardController extends Controller
         $users = $this->userRepository->getAllUser($sortBy, $sortOrder, $search);
         return view('admin', compact('users'));
     }
-    public function scan()
+    
+    public function scan(Request $request)
     {
-        return view('scan');
+        $input = $request->all();
+        $fingerPrint = $this->fingerPrintRepository->findByUserId($input['user_id']);
+        if ($fingerPrint->count() === 0) {
+            return redirect()->route('dashboard')->with('error', 'Người dùng chưa có mẫu vân tay, hãy liên hệ admin');
+        }else{
+            return view('scan');
+        }
     }
 
     public function check(Request $request)
     {
-        // Lấy thông tin về file
+        // Luuw thông tin về bản ghi quét vân tay chấm công
         $file = $request->file('url');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs('image', $fileName, 'public');
@@ -68,6 +75,7 @@ class DashboardController extends Controller
         $fingerscanData = $this->fingerScanRepository->findByUserId($request->user_id);
         return view('user', compact('fingerscanData', 'user'));
     }
+
     public function userUpdate(Request $request)
     {
         $inputs = $request->all();

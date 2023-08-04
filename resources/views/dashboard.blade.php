@@ -50,8 +50,10 @@
 
 <script>
     function routeToScan() {
-        window.location.href = '/scan';
+        var user_id = <?php echo $user->id; ?>;
+        window.location.href = '/scan?user_id=' + user_id;
     }
+    
     function previewAvatar() {
         var fileInput = document.getElementById('avatarInput');
         var imagePreview = document.getElementById('avatarPreview');

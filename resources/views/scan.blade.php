@@ -20,10 +20,8 @@
                     <!-- Thẻ input tải ảnh lên -->
                     <input type="file" accept="image/*" placeholder="quét vân tay" name='url' id='url' style="margin:auto; margin-top:30px; align-items:center; color:#fff; opacity:0;">
                     <br>
-
-                    <!-- Nút Quét để hiển thị ảnh đã tải lên -->
                     <br>
-                    <button class="btn btn-success scan-button-2" type="submit" style="margin-top:30px;">Quét</button>
+                    <button class="btn btn-success scan-button-2" type="submit" style="margin-top:30px;">Chấm công</button>
                 </form>
             </div>
         </div>
@@ -49,7 +47,8 @@
 
             const formData = new FormData();
             formData.append('image', file);
-            // Url của phía server
+            formData.append('user_id',user_id)
+            // Gửi ảnh lên phía server để kiểm tra
             // fetch('/upload', {
             //         method: 'POST',
             //         body: formData

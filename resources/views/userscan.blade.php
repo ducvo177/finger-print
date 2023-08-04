@@ -50,7 +50,19 @@
 
             const formData = new FormData();
             formData.append('image', file);
-    
+            formData.append('user_id',user_id)
+            // Gửi ảnh lên phía server để kiểm tra
+            // fetch('/upload', {
+            //         method: 'POST',
+            //         body: formData
+            //     })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         console.log('Server response:', data);
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error);
+            //     });
         }
         document.getElementById('url').addEventListener('change', function(event) {
             if (event.target.files && event.target.files[0]) {
