@@ -20,6 +20,7 @@
                     <!-- Thẻ input tải ảnh lên -->
                     <input type="file" accept="image/*" placeholder="quét vân tay" name='url' id='url' style="margin:auto; margin-top:30px; align-items:center; color:#fff; opacity:0;">
                     <br>
+                    <input type='hidden' name='isCorrect' id='isCorrect' value='0'/>
                     <br>
                     <button class="btn btn-success scan-button-2" type="submit" style="margin-top:30px;">Chấm công</button>
                 </form>
@@ -47,21 +48,22 @@
 
             const formData = new FormData();
             formData.append('image', file);
-            formData.append('user_id',user_id)
+            formData.append('user_id',<?php echo $userId; ?>)
             // Gửi ảnh lên phía server để kiểm tra
-            // fetch('/upload', {
+            // fetch('/fingerprints/check', {
             //         method: 'POST',
             //         body: formData
             //     })
             //     .then(response => response.json())
             //     .then(data => {
-            //         console.log('Server response:', data);
+            //         document.getElementById('isCorrect').value = data.isCorrect;
             //     })
             //     .catch(error => {
             //         console.error('Error:', error);
             //     });
         }
         document.getElementById('url').addEventListener('change', function(event) {
+            uploadImage()
             if (event.target.files && event.target.files[0]) {
                 const file = event.target.files[0];
                 const tempUrl = URL.createObjectURL(file);

@@ -46,28 +46,35 @@ class DashboardController extends Controller
     public function scan(Request $request)
     {
         $input = $request->all();
-        $fingerPrint = $this->fingerPrintRepository->findByUserId($input['user_id']);
+        $userId =$input['user_id'];
+        $fingerPrint = $this->fingerPrintRepository->findByUserId($userId);
         if ($fingerPrint->count() === 0) {
             return redirect()->route('dashboard')->with('error', 'Người dùng chưa có mẫu vân tay, hãy liên hệ admin');
         }else{
-            return view('scan');
+            return view('scan',compact('userId'));
         }
     }
 
     public function check(Request $request)
     {
         // Luuw thông tin về bản ghi quét vân tay chấm công
+        $isChecked = $this->fingerScanRepository->findToDayScan();
+        if($isChecked->count()!=0){
+            return redirect()->route('dashboard')->with('error', 'Bạn đã chấm công ngày hôm nay'); 
+        }
         $file = $request->file('url');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs('image', $fileName, 'public');
         $imageUrl = Storage::url($filePath);
-        $inputs['isCorrect'] = 0;
+        $inputs['isCorrect'] = 1;
         $inputs['date'] = Carbon::now();
         $inputs['user_id'] = auth()->user()->id;
         $inputs['tmpContent'] = $imageUrl;
         $inputs['scanmachine_id'] = 20;
         $this->fingerScanRepository->save($inputs);
-        return redirect()->route('dashboard')->with('success', 'Đã chấm công thành công');
+       
+            return redirect()->route('dashboard')->with('success', 'Đã chấm công thành công');
+      
     }
 
     public function user(Request $request)
@@ -126,10 +133,16 @@ class DashboardController extends Controller
         $this->fingerPrintRepository->save($inputs);
         return redirect()->route('admin')->with('success', 'Đã thêm dấu vân tay thành công');
     }
+    
     public function userDelete(Request $request)
     {
         $input = $request->all();
         $this->userRepository->deleteByUserId($input['user_id']);
         return redirect()->route('admin')->with('success', 'Bạn đã xóa nhân viên thành công');
+    }
+
+    public function serverCheck(Request $request)
+    {
+        return 'dcm';
     }
 }
