@@ -32,6 +32,7 @@ class DashboardController extends Controller
             return redirect()->route('admin');
         }
     }
+
     public function admin(Request $request)
     {
         $inputs = $request->all();
@@ -124,5 +125,11 @@ class DashboardController extends Controller
         $inputs['date'] = Carbon::now();
         $this->fingerPrintRepository->save($inputs);
         return redirect()->route('admin')->with('success', 'Đã thêm dấu vân tay thành công');
+    }
+    public function userDelete(Request $request)
+    {
+        $input = $request->all();
+        $this->userRepository->deleteByUserId($input['user_id']);
+        return redirect()->route('admin')->with('success', 'Bạn đã xóa nhân viên thành công');
     }
 }

@@ -36,6 +36,7 @@
                         <button type="submit" class="btn btn-success scan-button">Cập Nhật</button>
                     </div>
                 </form>
+                <button class="btn btn-danger scan-button" style="margin-top:10px" onclick="confirmDelete()">Xóa Nhân Viên</button>
             </div>
         </div>
         <div class="col-md-7">
@@ -55,6 +56,18 @@
 </div>
 
 <script>
+    function confirmDelete() {
+    const confirmed = window.confirm("Bạn có chắc chắn muốn xóa nhân viên này?");
+    
+    if (confirmed) {
+        handleDelete(); // Gọi hàm xử lý xóa ở đây nếu người dùng đã xác nhận
+    }
+}
+ function handleDelete() {
+        var user_id = <?php echo $user->id; ?>;
+        window.location.href = '/user/delete?user_id=' + user_id;
+    }
+
     function routeBack() {
         window.location.href = '/admin';
     }
