@@ -141,8 +141,4 @@ class DashboardController extends Controller
         return redirect()->route('admin')->with('success', 'Bạn đã xóa nhân viên thành công');
     }
 
-    public function serverCheck(Request $request)
-    {
-        return 'dcm';
-    }
 }

@@ -17,5 +17,4 @@ class FingerScan extends Model
         'scanmachine_id',
     ];
 
-    // Add any additional relationships or methods you need for FingerScan model
 }

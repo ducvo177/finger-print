@@ -37,4 +37,4 @@ Route::post('/user/update',[DashboardController::class,'userUpdate'])->name('use
 Route::get('/user/scan',[DashboardController::class,'userScan'])->name('user-scan')->middleware('auth');
 Route::get('/user/delete',[DashboardController::class,'userDelete'])->name('user-delete')->middleware('auth');
 Route::post('/user/scan/save', [DashboardController::class, 'userScanSave'])->name('user-scan-save')->middleware('auth');
-Route::post('/fingerprints/check',[DashboardController::class,'serverCheck'])->name('server-check');
+
