@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'avatar'
     ];
 
     /**
@@ -32,6 +34,17 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        // tạo mã nhân viên tăng dần
+        static::creating(function ($user) {
+            $lastMaNV = static::max('maNV');
+            $nextNumber = $lastMaNV ? intval(substr($lastMaNV, -3)) + 1 : 0;
+            $user->maNV = 'B19DCCN' . sprintf('%03d', $nextNumber);
+        });
+    }
 
     /**
      * The attributes that should be cast.

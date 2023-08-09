@@ -1,22 +1,116 @@
-.container {
+.container-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://wallpapers.com/images/hd/fingerprint-cyber-security-23mq2ko8y5z321vl.jpg');
+    background-image: url('/image/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
+.avatar-img{
+    width: 250px;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+.update-text{
+    width: 130px;
+}
+.update-input{
+    width: 400px;
+    border-radius: 10px;
+    padding: 5px ;
+    margin-bottom: 10px;
+}
 /* Thêm class "login-box" để tạo khung hình chữ nhật chứa form đăng nhập */
 .login-box {
-    width: 400px;
+    width: 500px;
     height: 500px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+}
+.register-box{
+ 
+    height: 700px !important;
+}
+.container-com {
+    height: 85vh;
+    background-color: rgba(0, 0, 0, 0.80); /* White background for the container */
+    padding: 20px; /* Add padding to the container if desired */
+    width:90%;
+    border-radius: 10px;
+}
+
+.table.table-bordered {
+    border-color: #ffffff; /* Remove border color for the table */
+}
+
+.table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9; /* Alternate row color for striped table */
+}
+
+.table.table-striped tbody tr:hover {
+    background-color: #f2f2f2; /* Hover background color for striped table */
+}
+.fingerprint-container {
+text-align: center;
+margin-bottom: 20px;
+margin-top: 100px;
+display: flex;
+flex-direction: column;
+}
+
+/* Style for the fingerprint image */
+.fingerprint-img {
+max-width: 60%;
+height: 250px;
+margin: auto;
+border-radius: 5px;
+}
+
+/* Style for the scan button */
+.scan-button {
+margin-top:50px;
+width: 300px;
+height: 50px;
+margin: auto;
+}
+.scan-button-2{
+    margin-top: 20px;
+    width: 300px;
+    height: 50px;
+    margin: auto;
+}
+.custom-table {
+background-color: #333; /* Change the table background color */
+color: #fff; /* Change the text color inside the table */
+}
+
+/* Style for the table header (thead) */
+.custom-table thead {
+background-color: #222; /* Change the table header background color */
+}
+
+/* Style for the table header cells (th) */
+.custom-table thead th {
+border-color: #444; /* Change the border color for table header cells */
+}
+
+/* Style for the table body cells (td) */
+.custom-table tbody td {
+border-color: #444;
+color: #fff; /* Change the border color for table body cells */
+}
+.table-title{
+color: #fff;
+}
+.scan-title{
+    color: #fff;
+    font-size: 24px;
 }
 
 /* Định dạng các thành phần bên trong form */
